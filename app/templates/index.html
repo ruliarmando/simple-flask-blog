@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% for post in posts.items %}
+		<h2><a href="{{ url_for('frontend.post', id=post.id) }}">{{ post.title }}</a></h2>
+        <p class="lead">by <span>Rooco</span></p>
+        <p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.date }}</p>
+        <hr>
+        <p>{{ post.content }}</p>
+        <a class="btn btn-primary" href="{{ url_for('frontend.post', id=post.id) }}">
+        	Read More <span class="glyphicon glyphicon-chevron-right"></span>
+    	</a>
+
+        <hr>
+	{% endfor %}
+
+    <!-- Pager -->
+    <ul class="pager">
+        {% if posts.has_next %}
+        <li class="previous">
+            <a href="{{ url_for('frontend.index', page=posts.next_num) }}">&larr; Older</a>
+        </li>
+        {% endif %}
+        {% if posts.has_prev %}
+        <li class="next">
+            <a href="{{ url_for('frontend.index', page=posts.prev_num) }}">Newer &rarr;</a>
+        </li>
+        {% endif %}
+    </ul>
+{% endblock %}

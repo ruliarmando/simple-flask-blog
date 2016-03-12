@@ -1,0 +1,8 @@
+{% extends admin_base_template %}
+
+{% block access_control %}
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="{{ url_for('frontend.index') }}">Frontend</a></li>
+    	<li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+  </ul>
+{% endblock %}
